@@ -12,9 +12,9 @@ B) パラメータを指定して実行するときにやること．
   のようにjsonファイルを指定する．
 """
 
-from dataclasses import dataclass, field
 # from utils import dump_params
 from argparse import ArgumentParser
+from dataclasses import dataclass, field
 
 
 @dataclass(frozen=True)
@@ -23,16 +23,17 @@ class Parameters:
     プログラム全体を通して共通のパラメータを保持するクラス．
     ここにプロジェクト内で使うパラメータを一括管理する．
     """
+
     args: dict = field(default_factory=lambda: {})  # コマンドライン引数
-    run_date: str = ''  # 実行時の時刻
-    git_revision: str = ''  # 実行時のプログラムのGitのバージョン
+    run_date: str = ""  # 実行時の時刻
+    git_revision: str = ""  # 実行時のプログラムのGitのバージョン
 
     param1: int = 0  # パラメータを定義する例
-    param2: dict = field(default_factory=lambda: {'k1': 'v1', 'k2': 'v2'})
+    param2: dict = field(default_factory=lambda: {"k1": "v1", "k2": "v2"})
     # リストや辞書で与える例
 
 
-def common_args(parser: 'ArgumentParser'):
+def common_args(parser: "ArgumentParser"):
     """
     コマンドライン引数を定義する関数．
     Args:
@@ -43,13 +44,13 @@ def common_args(parser: 'ArgumentParser'):
         "--parameters",
         help="パラメータ設定ファイルのパスを指定．デフォルトはNone",
         type=str,
-        default=None)
-    parser.add_argument("-a", "--arg1", type=int, help="arg1の説明", default=0)
+        default=None,
+    )
     # コマンドライン引数を指定
-    parser.add_argument("--arg2", type=float, help="arg2の説明", default=1.0)
-    # コマンドライン引数を指定
+    parser.add_argument("--a", type=int, help="足し算に用いる")
+    parser.add_argument("--b", type=int, help="足し算に用いる")
     return parser
 
 
 # if __name__ == "__main__":
-    # dump_params(Parameters(), './', partial=True)  # デフォルトパラメータを
+# dump_params(Parameters(), './', partial=True)  # デフォルトパラメータを
