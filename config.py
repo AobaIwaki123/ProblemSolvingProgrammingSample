@@ -13,7 +13,7 @@ B) パラメータを指定して実行するときにやること．
 """
 
 from dataclasses import dataclass, field
-from utils import dump_params
+# from utils import dump_params
 from argparse import ArgumentParser
 
 
@@ -51,5 +51,5 @@ def common_args(parser: 'ArgumentParser'):
     return parser
 
 
-if __name__ == "__main__":
-    dump_params(Parameters(), './', partial=True)  # デフォルトパラメータを
+# if __name__ == "__main__":
+    # dump_params(Parameters(), './', partial=True)  # デフォルトパラメータを
