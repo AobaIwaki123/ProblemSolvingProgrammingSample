@@ -32,7 +32,7 @@ def setup_params(
 ) -> dict[str, Any]:
     """
     コマンドライン引数などの辞書を受け取り，実行時刻，Gitのリビジョン，jsonファイル
-    からの引数と結合した辞書を返す．
+    からの引数と結合した辞書を返す.
 
         Args:
             args_dict (dict): argparseのコマンドライン引数などから受け取る辞書
@@ -40,8 +40,8 @@ def setup_params(
 
         Returns:
             dict: args_dictと実行時刻，Gitのリビジョン，jsonファイル
-            からの引数が結合された辞書．
-            構造は以下の通り．
+            からの引数が結合された辞書.
+            構造は以下の通り.
                 {
                     'args': args_dict,
                     'git_revision': <revision ID>,
@@ -84,7 +84,7 @@ def dump_params(params: config.Parameters, outdir: str, partial: bool = False) -
 
 def set_logging(result_dir: str) -> "logging.Logger":
     """
-    ログを標準出力とファイルに書き出すよう設定する関数．
+    ログを標準出力とファイルに書き出すよう設定する関数.
     Args:
         result_dir (str): ログの出力先
     Returns:
