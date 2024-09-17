@@ -1,43 +1,39 @@
-import argparse
-import logging
 import os
-
-from calc_add import calc_add
-from config import Parameters, common_args
-from utils import dump_params, set_logging, setup_params
+import argparse
+from config import common_args, Parameters
+from utils import dump_params, setup_params
+from utils import set_logging
+import logging
 
 
 def main() -> None:
+
     # コマンドライン引数の設定
     parser = argparse.ArgumentParser()
     parser = common_args(parser)  # コマンドライン引数引数を読み込み
     # parser.add_argument("--main")
-    # # 実行スクリプト固有のコマンドライン引数があればここに記入する.
+    # # 実行スクリプト固有のコマンドライン引数があればここに記入する．
     args = parser.parse_args()
     params = Parameters(**setup_params(vars(args), args.parameters))
     # args，run_date，git_revisionなどを追加した辞書を取得
 
     # 結果出力用ファイルの作成
-    result_dir = f"result/{params.run_date}"  # 結果出力ディレクトリ
+    result_dir = f'result/{params.run_date}'  # 結果出力ディレクトリ
     os.mkdir(result_dir)  # 実行日時を名前とするディレクトリを作成
-    dump_params(params, f"{result_dir}")  # パラメータを出力
+    dump_params(params, f'{result_dir}')  # パラメータを出力
 
     # ログ設定
     logger = logging.getLogger(__name__)
     set_logging(result_dir)  # ログを標準出力とファイルに出力するよう設定
 
     # 使用例
-    logger.info("parameters: ")
+    logger.info('parameters: ')
     logger.info(params)
-    logger.info(params.param1)  # params変数は各パラメータにドットアクセスが可能.
-    logger.info(f"{(params.args['a'])=}")  # コマンドライン引数はargs['']でアクセス.
-    logger.info(f"{params.args['b']=}")  # コマンドライン引数はargs['']でアクセス.
+    logger.info(params.param1)  # params変数は各パラメータにドットアクセスが可能．
+    logger.info(params.args['arg1'])  # コマンドライン引数はargs['']でアクセス．
 
     # do something...
-    calc_add(params.args["a"], params.args["b"], result_dir=result_dir)
-
-    # finish process
-    logger.info("Process terminated successfully. ")
+    logger.info('Process terminated successfully. ')
 
 
 if __name__ == "__main__":

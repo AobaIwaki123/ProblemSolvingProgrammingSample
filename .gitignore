@@ -10,3 +10,4 @@ result/*
 .DS_Store
 parameters.json
 .python-version
+__pycache__/
